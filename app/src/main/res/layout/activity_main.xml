@@ -12,6 +12,23 @@
         android:layout_height="match_parent">
     </WebView>
 
+
+
+<!--    <Button-->
+<!--        android:layout_marginTop="100dp"-->
+<!--        android:onClick="SwitchWIFION"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Test"-->
+<!--        tools:ignore="MissingConstraints" />-->
+<!--    <Button-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:onClick="SwitchWIFIOFF"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Switch on Wifi"-->
+<!--        tools:ignore="MissingConstraints" />-->
+
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
@@ -55,7 +72,7 @@
         android:layout_height="match_parent"
         android:background="@color/white"
         android:id="@+id/offlineScreen"
-        android:visibility="invisible">
+        android:visibility="visible">
 
         <ImageView
             android:layout_width="150dp"
@@ -78,8 +95,7 @@
             android:layout_below="@+id/uchur_logo"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="0dp"
-            android:layout_x="170dp"
-            android:layout_y="453dp"
+            android:visibility="visible"
             android:text="Отсутствует соединение с интернетом" />
     </RelativeLayout>
 
