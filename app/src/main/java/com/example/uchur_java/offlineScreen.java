@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.view.View.OnClickListener;
@@ -20,8 +21,14 @@ public class offlineScreen extends AppCompatActivity {
 
         exitButton.setOnClickListener(new OnClickListener() {
             public void onClick(View view) {
-                android.os.Process.killProcess(android.os.Process.myPid());
+                switchToMainActivity();
+//                android.os.Process.killProcess(android.os.Process.myPid());
             }
         });
+    }
+
+    private void switchToMainActivity() {
+        Intent switchActivityToMainIntent = new Intent(this, MainActivity.class);
+        startActivity(switchActivityToMainIntent);
     }
 }

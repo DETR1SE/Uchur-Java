@@ -8,7 +8,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
         <ImageView
             android:layout_width="150dp"
@@ -29,29 +30,17 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/uchur_logo"
             android:layout_centerHorizontal="true"
+            android:textColor="@color/black"
             android:text="Отсутствует соединение с интернетом" />
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="78dp"
-            android:layout_marginBottom="196dp"
-            android:text="Button" />
 
         <Button
             android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="221dp"
-            android:layout_marginEnd="96dp"
-            android:layout_marginBottom="197dp"
-            android:text="Button" />
+            android:layout_below="@+id/offlineTextView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:text="Повторить попытку" />
 
     </RelativeLayout>
 
