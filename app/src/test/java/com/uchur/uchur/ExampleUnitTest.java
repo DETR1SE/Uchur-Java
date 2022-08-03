@@ -1,4 +1,4 @@
-package com.example.uchur_java;
+package com.uchur.uchur;
 
 import org.junit.Test;
 

@@ -1,9 +1,7 @@
-package com.example.uchur_java;
+package com.uchur.uchur;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;

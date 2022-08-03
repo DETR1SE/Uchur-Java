@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Uchur-Java</string>
+    <string name="app_name">UCHUR</string>
     <string name="err_network_failure_title">Connection Error</string>
     <string name="err_network_failure_message">Please, check your network settings</string>
 </resources>

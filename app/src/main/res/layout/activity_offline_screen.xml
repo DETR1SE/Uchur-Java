@@ -12,12 +12,12 @@
         android:background="@color/white">
 
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:id="@+id/uchur_logo"
-            android:src="@drawable/uchur_logo"
+            android:src="@drawable/title_logo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -29,6 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/uchur_logo"
+            android:layout_marginTop="10dp"
             android:layout_centerHorizontal="true"
             android:textColor="@color/black"
             android:text="Отсутствует соединение с интернетом" />
