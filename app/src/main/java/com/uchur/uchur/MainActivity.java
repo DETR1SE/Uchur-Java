@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private WebView webView;
     private ProgressBar progressBar;
     private RelativeLayout splashScreen;
-    private String webUrl = "https://uchur.ru/?s_layout=23";
+    private String webUrl = "https://uchur.ru/?s_layout=20";
     private Context c;
     private BroadcastReceiver broadcastReceiver;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     if (alert != null && !alert.isShowing()) {
                         switchToOfflineActivity();
-                        alert.show();
+//                        alert.show();
                     }
                 }
             }
@@ -112,7 +112,10 @@ public class MainActivity extends AppCompatActivity {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 if (Uri.parse(url).getHost().contains("uchur.ru")) {
                     return false;
-                } else {
+                }   else if (Uri.parse(url).getHost().contains("sberbank.ru")) {
+                    return false;
+                }
+                else {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                     view.getContext().startActivity(intent);
                     return true;
