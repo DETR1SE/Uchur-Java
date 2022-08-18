@@ -3,10 +3,6 @@ plugins {
     id 'com.android.library' version '7.2.1' apply false
 }
 
-ext {
-    var = 'key1'
-}
-
 task clean(type: Delete) {
     delete rootProject.buildDir
 }

@@ -5,16 +5,16 @@ plugins {
 android {
     signingConfigs {
         debug {
-            storeFile file('C:\\Users\\DETR1SE\\Documents\\Uchur\\Android App\\uchur_debug_keystore_file.jks')
-            storePassword "bC5C6BZe"
-            keyAlias "debug_key"
-            keyPassword "bC5C6BZe"
+            storeFile file('C:\\Users\\DETR1SE\\Documents\\Uchur\\Android App\\Release-keys\\uchur_keystore_file.jks')
+            storePassword 'UAPBQhQL'
+            keyAlias 'key0'
+            keyPassword 'UAPBQhQL'
         }
         release {
-            storeFile file('C:\\Users\\DETR1SE\\Documents\\Uchur\\Android App\\uchur_release_keystore_file.jks')
-            storePassword "UAPBQhQL"
-            keyAlias "release_key"
-            keyPassword "UAPBQhQL"
+            storeFile file('C:\\Users\\DETR1SE\\Documents\\Uchur\\Android App\\Release-keys\\uchur_keystore_file.jks')
+            storePassword 'UAPBQhQL'
+            keyAlias 'key0'
+            keyPassword 'UAPBQhQL'
         }
     }
     compileSdk 32
@@ -23,8 +23,8 @@ android {
         applicationId "com.uchur.uchur"
         minSdk 21
         targetSdk 32
-        versionCode 2
-        versionName "1.1"
+        versionCode 3
+        versionName "1.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.release
