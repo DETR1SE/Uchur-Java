@@ -38,6 +38,18 @@
                     app:layout_constraintTop_toTopOf="parent">
                 </WebView>
 
+<!--                <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--                    android:id="@+id/replaced_navigation_bar"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentBottom="true"-->
+<!--                    app:itemBackground="@color/white"-->
+<!--                    app:itemIconTint="@color/yellow"-->
+<!--                    app:itemTextColor="@color/black"-->
+<!--                    app:layout_constraintBaseline_toBottomOf="parent"-->
+<!--                    app:layout_constraintBottom_toBottomOf="@+id/webView"-->
+<!--                    app:menu="@menu/menu_navigation" />-->
+
                 <ProgressBar
                     android:id="@+id/progressBar"
                     style="?android:attr/progressBarStyleHorizontal"
@@ -52,6 +64,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 <!--        </ScrollView>-->
 

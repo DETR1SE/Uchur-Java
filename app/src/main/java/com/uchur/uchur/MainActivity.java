@@ -1,5 +1,6 @@
 package com.uchur.uchur;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -11,15 +12,27 @@ import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.webkit.ConsoleMessage;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private BroadcastReceiver broadcastReceiver;
     private SwipeRefreshLayout swipeRefreshLayout;
     private ViewTreeObserver.OnScrollChangedListener mOnScrollChangedListener;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +57,28 @@ public class MainActivity extends AppCompatActivity {
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         splashScreen = (RelativeLayout) findViewById(R.id.splashScreen);
+
+//        bottomNavigationView = (BottomNavigationView) findViewById(R.id.replaced_navigation_bar);
+        bottomNavigationView.setSelectedItemId(R.id.shorts);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.home:
+                        return true;
+                    case R.id.cart:
+                        return true;
+                    case R.id.shorts:
+                        return true;
+                    case R.id.wishlist:
+                        return true;
+                    case R.id.profile:
+                        return true;
+                }
+                return false;
+            }
+        });
+
         webView.loadUrl(webUrl);
 
         //Setting up web settings
@@ -52,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
         webSettings.setLoadWithOverviewMode(true);
         webSettings.setUseWideViewPort(true);
         webSettings.setDomStorageEnabled(true);
+
+//        new MyAsyncTask().execute();
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -109,6 +147,8 @@ public class MainActivity extends AppCompatActivity {
         };
 
         webView.setWebViewClient(new UchurWebViewClient() {
+//            String sticky_panel_script = "javascript:(function() { var sticky_panel=document.getElementsByClassName('ut2-sticky-panel__wrap');sticky_panel[0].style.display='none';})()";
+//            webView.loadUrl(sticky_panel_script);
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 if (Uri.parse(url).getHost().contains("uchur.ru")) {
                     return false;
@@ -129,6 +169,8 @@ public class MainActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
                 progressBar.setProgress(newProgress);
 
+//                webView.loadUrl("javascript:(function() {" + "document.getElementsByClassName('ut2-sticky-panel__wrap')[0].style.display='none';})()");
+
                 if (newProgress == 100) {
                     splashScreen.setVisibility(View.GONE);
                     progressBar.setVisibility(View.GONE);
@@ -138,12 +180,40 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private class JSBridge {
+        @JavascriptInterface
+        public void calledFromJS() {
+
+        }
+    }
+
+    private class MyAsyncTask extends AsyncTask<Void, Void, Document> {
+        @Override
+        protected Document doInBackground(Void... voids) {
+            Document document = null;
+            try {
+                document = Jsoup.connect(webUrl).get();
+//                document.getElementsByClass("ut2-sticky-panel__wrap").remove();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return document;
+        }
+
+        @Override
+        protected void onPostExecute(Document document) {
+            super.onPostExecute(document);
+            webView.loadDataWithBaseURL(webUrl, document.toString(), "text/html", "utf-8", "");
+            webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        }
+    }
+
     @Override
     public void onStart() {
         super.onStart();
 
-        swipeRefreshLayout.getViewTreeObserver().addOnScrollChangedListener(mOnScrollChangedListener =
-        new ViewTreeObserver.OnScrollChangedListener() {
+        swipeRefreshLayout.getViewTreeObserver().addOnScrollChangedListener(mOnScrollChangedListener = new ViewTreeObserver.OnScrollChangedListener() {
             @Override
             public void onScrollChanged() {
                 if (webView.getScrollY() == 0)
