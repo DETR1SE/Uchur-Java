@@ -27,6 +27,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -44,12 +45,13 @@ public class MainActivity extends AppCompatActivity {
     private BroadcastReceiver broadcastReceiver;
     private SwipeRefreshLayout swipeRefreshLayout;
     private ViewTreeObserver.OnScrollChangedListener mOnScrollChangedListener;
-    private BottomNavigationView bottomNavigationView;
+//    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        FirebaseMessaging.getInstance().subscribeToTopic("notifications");
 
         //Settings up Web View
 
@@ -59,25 +61,23 @@ public class MainActivity extends AppCompatActivity {
         splashScreen = (RelativeLayout) findViewById(R.id.splashScreen);
 
 //        bottomNavigationView = (BottomNavigationView) findViewById(R.id.replaced_navigation_bar);
-        bottomNavigationView.setSelectedItemId(R.id.shorts);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.home:
-                        return true;
-                    case R.id.cart:
-                        return true;
-                    case R.id.shorts:
-                        return true;
-                    case R.id.wishlist:
-                        return true;
-                    case R.id.profile:
-                        return true;
-                }
-                return false;
-            }
-        });
+//        bottomNavigationView.setSelectedItemId(R.id.shorts);
+//        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                switch (item.getItemId()) {
+//                    case R.id.cart:
+//                        return true;
+//                    case R.id.shorts:
+//                        return true;
+//                    case R.id.wishlist:
+//                        return true;
+//                    case R.id.profile:
+//                        return true;
+//                }
+//                return false;
+//            }
+//        });
 
         webView.loadUrl(webUrl);
 
